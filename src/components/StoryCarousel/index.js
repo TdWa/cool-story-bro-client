@@ -14,6 +14,7 @@ export default function StoryCarousel(props) {
   return (
     <Carousel className='mt-5'>
       {props.homepage.stories.map(story => {
+        const nrOfLikes = story.users.length;
         return (
           <Carousel.Item key={story.id}>
             {story.imageUrl ? (
@@ -32,6 +33,7 @@ export default function StoryCarousel(props) {
             >
               <h3>{story.name}</h3>
               <p>{story.content}</p>
+              <h5>{nrOfLikes} Likes</h5>
               <Button variant='danger' onClick={() => onDelete(story.id)}>
                 Delete story
               </Button>
