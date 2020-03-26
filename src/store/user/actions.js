@@ -209,3 +209,27 @@ export const deleteStory = storyId => {
     }
   };
 };
+
+export const likeStory = storyId => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const { token } = selectUser(getState());
+    console.log("Liking story");
+    try {
+      const liked = await myAxios.post(
+        `/homepages/stories/${storyId}/like`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+      dispatch(getUserWithStoredToken());
+      dispatch(appDoneLoading());
+      console.log("liked?", liked);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+};
