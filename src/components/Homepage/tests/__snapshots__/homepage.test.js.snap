@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Homepage > should render without props 1`] = `
+<div
+  className="jumbotron"
+  style={
+    Object {
+      "backgroundColor": undefined,
+      "color": undefined,
+    }
+  }
+>
+  <h1 />
+  <p />
+</div>
+`;
