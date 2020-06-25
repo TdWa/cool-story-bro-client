@@ -3,9 +3,9 @@ import axios from "axios";
 
 export const FETCH_HOMEPAGES_SUCCESS = "FETCH_HOMEPAGES_SUCCESS";
 
-export const fetchHomepagesSuccess = homepages => ({
+export const fetchHomepagesSuccess = (homepages) => ({
   type: FETCH_HOMEPAGES_SUCCESS,
-  payload: homepages
+  payload: homepages,
 });
 
 export const fetchHomepages = () => {
