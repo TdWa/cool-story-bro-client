@@ -5,7 +5,7 @@ import {
   appLoading,
   appDoneLoading,
   showMessageWithTimeout,
-  setMessage
+  setMessage,
 } from "../appState/actions";
 import myAxios from "../../axios";
 
@@ -14,36 +14,41 @@ export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const HOMEPAGE_UPDATED = "HOMEPAGE_UPDATED";
 export const LOG_OUT = "LOG_OUT";
 export const STORY_POST_SUCCESS = "STORY_POST_SUCCESS";
-export const STORY_DELETE_SUCCESS = "STORY_DELETE_SUCCESS";
+export const STORY_DELETE_SUCCESS = "STORY_DELETED_SUCCESS";
 
-const loginSuccess = userWithToken => {
+const loginSuccess = (userWithToken) => {
   return {
     type: LOGIN_SUCCESS,
-    payload: userWithToken
+    payload: userWithToken,
   };
 };
 
-const tokenStillValid = userWithoutToken => ({
+const tokenStillValid = (userWithoutToken) => ({
   type: TOKEN_STILL_VALID,
-  payload: userWithoutToken
+  payload: userWithoutToken,
 });
 
 export const logOut = () => ({ type: LOG_OUT });
 
-export const homepageUpdated = homepage => ({
+export const homepageUpdated = (homepage) => ({
   type: HOMEPAGE_UPDATED,
-  payload: homepage
+  payload: homepage,
 });
 
-export const storyPostSuccess = story => ({
+export const storyPostSuccess = (story) => ({
   type: STORY_POST_SUCCESS,
-  payload: story
+  payload: story,
 });
 
-export const storyDeleteSuccess = storyId => ({
-  type: STORY_DELETE_SUCCESS,
-  payload: storyId
-});
+export const storyDeleteSuccess = (storyId) => {
+  if (isNaN(parseInt(storyId))) {
+    throw new TypeError("sorry, only numbers friend");
+  }
+  return {
+    type: STORY_DELETE_SUCCESS,
+    payload: storyId,
+  };
+};
 
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
@@ -52,7 +57,7 @@ export const signUp = (name, email, password) => {
       const response = await axios.post(`${apiUrl}/signup`, {
         name,
         email,
-        password
+        password,
       });
 
       dispatch(loginSuccess(response.data));
@@ -77,7 +82,7 @@ export const login = (email, password) => {
     try {
       const response = await axios.post(`${apiUrl}/login`, {
         email,
-        password
+        password,
       });
 
       dispatch(loginSuccess(response.data));
@@ -109,7 +114,7 @@ export const getUserWithStoredToken = () => {
       // if we do have a token,
       // check wether it is still valid or if it is expired
       const response = await axios.get(`${apiUrl}/me`, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       // token is still valid
@@ -137,12 +142,12 @@ export const updateMyPage = (title, description, backgroundColor, color) => {
         title,
         description,
         backgroundColor,
-        color
+        color,
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
     // console.log(response);
@@ -166,12 +171,12 @@ export const postStory = (name, content, imageUrl) => {
       {
         name,
         content,
-        imageUrl
+        imageUrl,
       },
       {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       }
     );
 
@@ -184,7 +189,7 @@ export const postStory = (name, content, imageUrl) => {
   };
 };
 
-export const deleteStory = storyId => {
+export const deleteStory = (storyId) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     const { homepage, token } = selectUser(getState());
@@ -196,8 +201,8 @@ export const deleteStory = storyId => {
         `/homepages/${homepageId}/stories/${storyId}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
 
