@@ -10,13 +10,16 @@ export const appDoneLoading = () => ({ type: APP_DONE_LOADING });
 export const clearMessage = () => ({ type: CLEAR_MESSAGE });
 
 export const setMessage = (variant, dismissable, text) => {
+  if (!["danger", "success"].includes(variant)) {
+    throw new Error("Variant not recognized");
+  }
   return {
     type: SET_MESSAGE,
     payload: {
       variant,
       dismissable,
-      text
-    }
+      text,
+    },
   };
 };
 
@@ -26,7 +29,7 @@ export const showMessageWithTimeout = (
   text,
   timeOutMilliSeconds
 ) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(setMessage(variant, dismissable, text));
 
     const timeout = timeOutMilliSeconds || DEFAULT_MESSAGE_TIMEOUT;

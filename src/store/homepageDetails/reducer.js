@@ -1,11 +1,11 @@
 import { HOMEPAGE_DETAILS_FETCHED } from "./actions";
 
 const initialState = {
-  stories: []
+  stories: [],
 };
 
-export default (state = initialState, { type, payload }) => {
-  switch (type) {
+export default (state = initialState, action = {}) => {
+  switch (action.type) {
     case HOMEPAGE_DETAILS_FETCHED:
       return { ...state, ...payload };
 
