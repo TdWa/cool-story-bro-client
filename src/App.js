@@ -7,9 +7,9 @@ import Loading from "./components/Loading";
 import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
-import MyHomepage from "./pages/MyHomepage";
-import Homepages from "./pages/Homepages";
-import HomepageDetails from "./pages/HomepageDetails";
+import MySpace from "./pages/MySpace";
+import Spaces from "./pages/Spaces";
+import SpaceDetails from "./pages/SpaceDetails";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -29,11 +29,11 @@ function App() {
       <MessageBox />
       <Switch>
         {isLoading ? <Loading /> : null}
-        <Route exact path="/" component={Homepages} />
+        <Route exact path="/" component={Spaces} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
-        <Route path="/myhomepage" component={MyHomepage} />
-        <Route path="/homepages/:id" component={HomepageDetails} />
+        <Route path="/myspace" component={MySpace} />
+        <Route path="/spaces/:id" component={SpaceDetails} />
       </Switch>
     </div>
   );

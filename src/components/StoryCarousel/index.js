@@ -13,7 +13,7 @@ export default function StoryCarousel(props) {
   };
   return (
     <Carousel className='mt-5'>
-      {props.homepage.stories.map(story => {
+      {props.space.stories.map(story => {
         return (
           <Carousel.Item key={story.id}>
             {story.imageUrl ? (
@@ -25,8 +25,8 @@ export default function StoryCarousel(props) {
             ) : null}
             <Carousel.Caption
               style={{
-                backgroundColor: `${props.homepage.backgroundColor}99`,
-                color: props.homepage.color
+                backgroundColor: `${props.space.backgroundColor}99`,
+                color: props.space.color
               }}
               className='p-5'
             >

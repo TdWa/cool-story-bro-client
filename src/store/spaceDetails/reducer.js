@@ -1,4 +1,4 @@
-import { HOMEPAGE_DETAILS_FETCHED } from "./actions";
+import { SPACE_DETAILS_FETCHED } from "./actions";
 
 const initialState = {
   stories: []
@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case HOMEPAGE_DETAILS_FETCHED:
+    case SPACE_DETAILS_FETCHED:
       return { ...state, ...payload };
 
     default:

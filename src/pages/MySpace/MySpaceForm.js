@@ -3,35 +3,35 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { selectMyHomepage } from "../../store/user/selectors";
-import { updateMyPage } from "../../store/user/actions";
+import { selectMySpace } from "../../store/user/selectors";
+import { updateMySpace } from "../../store/user/actions";
 
-export default function MyHomepageForm() {
-  const homepage = useSelector(selectMyHomepage);
+export default function MySpaceForm() {
+  const space = useSelector(selectMySpace);
   const dispatch = useDispatch();
-  const [title, setTitle] = useState(homepage.title);
-  const [description, setDescription] = useState(homepage.description || "");
+  const [title, setTitle] = useState(space.title);
+  const [description, setDescription] = useState(space.description || "");
   const [backgroundColor, setBackgroundColor] = useState(
-    homepage.backgroundColor
+    space.backgroundColor
   );
-  const [color, setColor] = useState(homepage.color);
+  const [color, setColor] = useState(space.color);
 
   function submitForm(event) {
     event.preventDefault();
 
     console.log(title, description, backgroundColor, color);
-    dispatch(updateMyPage(title, description, backgroundColor, color));
+    dispatch(updateMySpace(title, description, backgroundColor, color));
   }
   return (
     <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-      <h1 className="mt-5 mb-5">Edit your page</h1>
+      <h1 className="mt-5 mb-5">Edit your space</h1>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
           value={title}
           onChange={event => setTitle(event.target.value)}
           type="text"
-          placeholder="Title of your page"
+          placeholder="Title of your space"
           required
         />
       </Form.Group>
@@ -42,7 +42,7 @@ export default function MyHomepageForm() {
           value={description}
           onChange={event => setDescription(event.target.value)}
           type="text"
-          placeholder="What is your page about"
+          placeholder="What is your space about"
         />
       </Form.Group>
       <Form.Group>

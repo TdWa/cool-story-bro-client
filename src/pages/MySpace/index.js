@@ -6,13 +6,13 @@ import Loading from "../../components/Loading";
 import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import MyHomepageForm from "./MyHomepageForm";
+import MySpaceForm from "./MySpaceForm";
 import StoryForm from "./StoryForm";
-import Homepage from "../../components/Homepage";
+import Space from "../../components/Space";
 import StoryCarousel from "../../components/StoryCarousel";
 
-export default function MyHomepage() {
-  const { token, homepage, id } = useSelector(selectUser);
+export default function MySpace() {
+  const { token, space, id } = useSelector(selectUser);
   const [editMode, setEditMode] = useState(false);
   const [postStoryMode, setpostStoryMode] = useState(false);
   const history = useHistory();
@@ -21,28 +21,28 @@ export default function MyHomepage() {
     history.push("/");
   }
 
-  if (homepage === null) {
+  if (space === null) {
     return <Loading />;
   }
 
   const displayButtons =
-    id === homepage.userId && editMode === false && postStoryMode === false;
+    id === space.userId && editMode === false && postStoryMode === false;
 
   //   console.log("EDITMODE", editMode);
   return (
     <>
-      <Homepage
-        id={homepage.id}
-        title={homepage.title}
-        description={homepage.description}
-        backgroundColor={homepage.backgroundColor}
-        color={homepage.color}
+      <Space
+        id={space.id}
+        title={space.title}
+        description={space.description}
+        backgroundColor={space.backgroundColor}
+        color={space.color}
         showLink={false}
       />
       <Container>
         {displayButtons ? (
           <Card>
-            <Button onClick={() => setEditMode(true)}>Edit my page</Button>
+            <Button onClick={() => setEditMode(true)}>Edit my space</Button>
             <Button onClick={() => setpostStoryMode(true)} className="mt-2">
               Post a cool story bro
             </Button>
@@ -51,7 +51,7 @@ export default function MyHomepage() {
 
         {editMode ? (
           <Card>
-            <MyHomepageForm />
+            <MySpaceForm />
           </Card>
         ) : null}
 
@@ -61,7 +61,7 @@ export default function MyHomepage() {
           </Card>
         ) : null}
 
-        <StoryCarousel homepage={homepage} />
+        <StoryCarousel space={space} />
       </Container>
     </>
   );

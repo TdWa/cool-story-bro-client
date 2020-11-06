@@ -11,7 +11,7 @@ import myAxios from "../../axios";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
-export const HOMEPAGE_UPDATED = "HOMEPAGE_UPDATED";
+export const SPACE_UPDATED = "SPACE_UPDATED";
 export const LOG_OUT = "LOG_OUT";
 export const STORY_POST_SUCCESS = "STORY_POST_SUCCESS";
 export const STORY_DELETE_SUCCESS = "STORY_DELETE_SUCCESS";
@@ -30,9 +30,9 @@ const tokenStillValid = userWithoutToken => ({
 
 export const logOut = () => ({ type: LOG_OUT });
 
-export const homepageUpdated = homepage => ({
-  type: HOMEPAGE_UPDATED,
-  payload: homepage
+export const spaceUpdated = space => ({
+  type: SPACE_UPDATED,
+  payload: space
 });
 
 export const storyPostSuccess = story => ({
@@ -126,13 +126,13 @@ export const getUserWithStoredToken = () => {
   };
 };
 
-export const updateMyPage = (title, description, backgroundColor, color) => {
+export const updateMySpace = (title, description, backgroundColor, color) => {
   return async (dispatch, getState) => {
-    const { homepage, token } = selectUser(getState());
+    const { space, token } = selectUser(getState());
     dispatch(appLoading());
 
     const response = await axios.patch(
-      `${apiUrl}/homepages/${homepage.id}`,
+      `${apiUrl}/spaces/${space.id}`,
       {
         title,
         description,
@@ -150,19 +150,19 @@ export const updateMyPage = (title, description, backgroundColor, color) => {
     dispatch(
       showMessageWithTimeout("success", false, "update successfull", 3000)
     );
-    dispatch(homepageUpdated(response.data.homepage));
+    dispatch(spaceUpdated(response.data.space));
     dispatch(appDoneLoading());
   };
 };
 
 export const postStory = (name, content, imageUrl) => {
   return async (dispatch, getState) => {
-    const { homepage, token } = selectUser(getState());
+    const { space, token } = selectUser(getState());
     // console.log(name, content, imageUrl);
     dispatch(appLoading());
 
     const response = await axios.post(
-      `${apiUrl}/homepages/${homepage.id}/stories`,
+      `${apiUrl}/spaces/${space.id}/stories`,
       {
         name,
         content,
@@ -187,13 +187,13 @@ export const postStory = (name, content, imageUrl) => {
 export const deleteStory = storyId => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
-    const { homepage, token } = selectUser(getState());
-    const homepageId = homepage.id;
+    const { space, token } = selectUser(getState());
+    const spaceId = space.id;
     // make an axios request to delete
     // and console.log the response if success
     try {
       const response = await myAxios.delete(
-        `/homepages/${homepageId}/stories/${storyId}`,
+        `/spaces/${spaceId}/stories/${storyId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`

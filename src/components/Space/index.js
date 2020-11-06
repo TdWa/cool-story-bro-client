@@ -3,7 +3,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-export default function Homepage(props) {
+export default function Space(props) {
   return (
     <Jumbotron
       style={{
@@ -14,8 +14,8 @@ export default function Homepage(props) {
       <h1>{props.title}</h1>
       <p>{props.description}</p>
       {props.showLink ? (
-        <Link to={`/homepages/${props.id}`}>
-          <Button>Visit page</Button>
+        <Link to={`/spaces/${props.id}`}>
+          <Button>Visit space</Button>
         </Link>
       ) : null}
     </Jumbotron>

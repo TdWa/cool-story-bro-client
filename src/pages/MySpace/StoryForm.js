@@ -6,7 +6,7 @@ import Image from "react-bootstrap/Image";
 import { useDispatch } from "react-redux";
 import { postStory } from "../../store/user/actions";
 
-export default function MyHomepageForm() {
+export default function MySpaceForm() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
