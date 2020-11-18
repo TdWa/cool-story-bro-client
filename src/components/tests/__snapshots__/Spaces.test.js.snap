@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Space /> A Link should render when showLink prop is set to true 1`] = `
+<div
+  className="jumbotron"
+  style={
+    Object {
+      "backgroundColor": "white",
+      "color": "black",
+    }
+  }
+>
+  <h1>
+    AwesomeSpace
+  </h1>
+  <p>
+    This is MY space
+  </p>
+  <a
+    href="/spaces/99"
+    onClick={[Function]}
+  >
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      type="button"
+    >
+      Visit space
+    </button>
+  </a>
+</div>
+`;
+
+exports[`<Space /> should render with all props 1`] = `
+<div
+  className="jumbotron"
+  style={
+    Object {
+      "backgroundColor": "white",
+      "color": "black",
+    }
+  }
+>
+  <h1>
+    AwesomeSpace
+  </h1>
+  <p>
+    This is MY space
+  </p>
+</div>
+`;
+
+exports[`<Space /> should render with all props 2`] = `
+<div
+  className="jumbotron"
+  style={
+    Object {
+      "backgroundColor": "white",
+      "color": "black",
+    }
+  }
+>
+  <h1>
+    AwesomeSpace
+  </h1>
+  <p>
+    This is MY space
+  </p>
+</div>
+`;
+
+exports[`<Space /> should render with props 1`] = `
+<div
+  className="jumbotron"
+  style={
+    Object {
+      "backgroundColor": "white",
+      "color": "black",
+    }
+  }
+>
+  <h1>
+    AwesomeSpace
+  </h1>
+  <p>
+    This is MY space
+  </p>
+</div>
+`;
+
+exports[`<Space /> should render without props 1`] = `
+<div
+  className="jumbotron"
+  style={
+    Object {
+      "backgroundColor": undefined,
+      "color": undefined,
+    }
+  }
+>
+  <h1 />
+  <p />
+</div>
+`;
+
+exports[`<Space /> should render without props 2`] = `
+<div
+  className="jumbotron"
+  style={
+    Object {
+      "backgroundColor": undefined,
+      "color": undefined,
+    }
+  }
+>
+  <h1 />
+  <p />
+</div>
+`;
